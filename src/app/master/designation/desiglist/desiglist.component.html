@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Designation ID</th>
+            <th>Designation Name</th>
+            <th>Created Client</th>
+            <th>Created By</th>
+            <th>Created Date</th>
+            <th>Updated By</th>
+            <th>Updated Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let designation of designations | async">
+            <td>{{designation.designationId}}</td>
+            <td>{{designation.designationName}}</td>
+            <td>{{designation.createdClient}}</td>
+            <td>{{designation.createdUserId}}</td>
+            <td>{{designation.createdDate}}</td>
+            <td>{{designation.updatedUserId}}</td>
+            <td>{{designation.updatedDate}}</td>
+            <td>
+              <div *ngIf="isDelete" ><button (click)="delete(designation.designationId)" class="btn btn-danger">Delete</button>
+              </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

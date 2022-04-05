@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Client</th>
+            <th>Group Name</th>
+            <th>Active Status</th>
+            <th>Created By</th>
+            <th>Created At</th>
+            <th>Updated By</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users | async">
+            <td>{{user.userId}}</td>
+            <td>{{user.createdClient}}</td>
+            <td>{{user.groupName}}</td>
+            <td>{{user.isActive?'Yes':'No'}}</td>
+            <td>{{user.createdUserId}}</td>
+            <td>{{user.createdDate}}</td>
+            <td>{{user.updatedUserId}}</td>
+            <td>{{user.updatedDate}}</td>
+            <td><div *ngIf="isDelete">
+              <button (click)="delete(user.userId)" class="btn btn-danger">Delete</button>
+            </div>  </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

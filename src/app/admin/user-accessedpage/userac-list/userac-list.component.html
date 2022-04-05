@@ -1,0 +1,34 @@
+<br><br>
+<div  class="container" align="center">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Sl. No</th>
+            <th>User ID</th>
+            <th>Accessed Page</th>
+            <th>Accessed Date</th>
+            <th>Created Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userAccessedPage of userAccessedPages | async; let i = index ">
+            <td>{{i+1}}</td>
+            <td>{{userAccessedPage.userId}}</td>
+            <td>{{userAccessedPage.accessedPage}}</td>
+            <td>{{userAccessedPage.accessedDate}}</td>
+            <td>{{userAccessedPage.createdClient}}</td>
+            <td>
+              <div *ngIf="isDelete" ><button (click)="delete(userAccessedPage.recId)"  class="btn btn-danger">Delete</button>
+              </div></td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+    </div>
+  </div>
+  </div>

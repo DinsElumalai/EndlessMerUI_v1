@@ -1,0 +1,15 @@
+<br><br>
+<div  class="container" align="center"><h1 align="center">Software Setup Details</h1>
+    
+    <div align="right" *ngIf="isCreateAllowed">
+        <button mdbRipple type="button" class="btn btn-primary" (click)= "isAdd = !isAdd">Create</button>
+    </div>
+    <br><hr>
+    <div *ngIf= "isAdd">
+        <app-software-add></app-software-add> 
+    </div>
+    <div>
+        <app-software-list></app-software-list> 
+    </div>
+    
+</div>

@@ -1,0 +1,68 @@
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th>Item Id</th>
+            <th>Created Client</th>
+            <th>Item Our Code</th>
+            <th>Item Type Id</th>
+            <th>Item Sub Type Id</th>
+            <th>Item Our Type Code</th>
+            <th>Item Number</th>
+            <th>Item Name </th>
+            <th>Item Name Id</th>
+            <th>Vendor Id</th>
+            <th>Item Description</th>
+            <th>Unit Category</th>
+            <th>HsnS Ac Code</th>
+            <th>Buffer Qty</th>
+            <th>Reorder Qty Level</th>
+            <th>Registered Date</th>
+            <th>Active</th>
+            <th>Inactivated Date</th>
+            <th>comments</th>
+            <th>Created By</th>
+            <th>Created Date</th>
+            <th>Updated By</th>
+            <th>Updated Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items ">
+            <td>{{item.itemId}}</td>
+            <td>{{item.createdClient}}</td>
+            <td>{{item.itemOurCode}}</td>
+            <td>{{item.itemTypeId}}</td>
+            <td>{{item.itemSubTypeId}}</td>
+            <td>{{item.itemOurTypeCode}}</td>
+            <td>{{item.itemNumber}}</td>
+            <td>{{item.itemName}}</td>
+            <td>{{item.itemNameId}}</td>
+            <td>{{item.vendorId}}</td>
+            <td>{{item.itemDescription}}</td>
+            <td>{{item.unitCategory}}</td>
+            <td>{{item.hsnSacCode}}</td>
+            <td>{{item.bufferQty}}</td>
+            <td>{{item.reorderQtyLevel}}</td>
+            <td>{{item.registeredDate}}</td>
+            <td>{{item.active}}</td>
+            <td>{{item.inactivatedDate}}</td>
+            <td>{{item.comments}}</td>
+            <td>{{item.createdUserId}}</td>
+            <td>{{item.createdDate}}</td>
+            <td>{{item.updatedUserId}}</td>
+            <td>{{item.updatedDate}}</td>
+
+            <td><div *ngIf="isDelete"><button (click)="delete(item.itemId)" class="btn btn-danger">Delete</button>
+            </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

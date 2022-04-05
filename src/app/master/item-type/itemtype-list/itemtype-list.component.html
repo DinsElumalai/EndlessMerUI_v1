@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Item Type Id</th>
+            <th>Created Client</th>
+            <th>Item Type Name</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Created Date</th>
+            <th>Updated By</th>
+            <th>Updated Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemType of itemTypes | async">
+            <td>{{itemType.itemTypeId}}</td>
+            <td>{{itemType.createdClient}}</td>
+            <td>{{itemType.itemTypeName}}</td>
+            <td>{{itemType.description}}</td>
+            <td>{{itemType.createdUserId}}</td>
+            <td>{{itemType.createdDate}}</td>
+            <td>{{itemType.updatedBy}}</td>
+            <td>{{itemType.updatedDate}}</td>
+
+            <td>
+              <div *ngIf="isDelete"><button (click)="delete(itemType.itemTypeId)" class="btn btn-danger">Delete</button>
+              </div> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

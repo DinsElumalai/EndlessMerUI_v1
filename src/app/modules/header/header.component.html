@@ -1,0 +1,34 @@
+<mat-toolbar class="headTool" color="primary">
+ 
+  <div>
+  <a class="navbar-brand" href="#">
+    <a class="navbar-brand brand-logo " routerLink="/">
+      <img src="assets/mms.svg" alt="logo" style="width: 70px;" class="rounded"/>
+    </a>
+  </a>
+</div>
+<div class="md-1">
+  <app-toggle-sidebar></app-toggle-sidebar>
+</div>
+    <span class="title">E-M Material Management System</span>
+    <div class="col-xs-2">Welcome {{ getLoggedUser }} </div>&nbsp;&nbsp;&nbsp;
+   
+    <div class="dropdown col-xs-2" *ngIf="getLoggedUser != 'Guest'">
+      <button class="btn btn-default dropdown-toggle text-white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Profile
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        
+        <button class="dropdown-item" type="button" routerLink="changepassword">Change Password</button>
+        <li role="separator" class="divider"></li>
+        <button class="dropdown-item" type="button" routerLink="logout">Logout</button>
+        
+      </ul>
+    </div>
+    &nbsp;&nbsp;
+    <div class="col-xs-2" *ngIf="getLoggedUser === 'Guest'">
+       <button class="btn btn-primary " type="button" routerLink="login">Login</button>
+    </div>
+  </mat-toolbar>
+  

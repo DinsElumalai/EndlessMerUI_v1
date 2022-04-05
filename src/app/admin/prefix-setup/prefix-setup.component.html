@@ -1,0 +1,16 @@
+<br><br>
+<div  class="container" align="center"><h1 align="center">Prefix Setup Details</h1>
+    
+    <div align="right" *ngIf="isCreateAllowed">
+        <button mdbRipple type="button" class="btn btn-primary" (click)= "isAdd = !isAdd">Create</button>
+    </div>
+    <br><hr>
+    <div *ngIf= "isAdd">
+        <app-prefix-add></app-prefix-add> 
+    </div>
+    <!--<div *ngIf= "isList">-->
+        <div>
+        <app-prefix-list></app-prefix-list> 
+    </div>
+    
+</div>

@@ -1,0 +1,126 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <div class="panel-body">
+        <div class="form-horizontal border"><br>
+          <form>
+          <div class="control-group form-inline d-flex justify-content-center">
+            
+              Operator :  <input list="employees" class="form-control input-sm" name="operatorEmployeeId" id="operatorEmployeeId" [(ngModel)]="filterOperatorEmployeeId" (input)="applyFilter()">
+              <datalist id="employees">
+                <option *ngFor="let employee of employees" [value]="employee.employeeId">
+                  {{employee.employeeOurCode}} - {{employee.employeeName}}
+                </option>
+              </datalist>
+              &nbsp;  Part Item ID :  <input list="partItems" class="form-control input-sm" name="partItemId" id="partItemId" [(ngModel)]="filterPartItemId" (input)="applyFilter()">
+              <datalist id="partItems">
+                <option *ngFor="let partItem of partItems" [value]="partItem.itemId">
+                  {{partItem.itemNameId}} - {{partItem.itemNumber}} - {{partItem.itemName}}
+                </option>
+              </datalist>
+              &nbsp;  From Date :   <input type="date" class="form-control input-sm col-xs-5" name="fromDate" id="fromDate"  [(ngModel)]="filterFromDate" (input)="applyFilter()"/> 
+            &nbsp;To Date :&nbsp; <input type="date" class="form-control input-sm col-xs-5" name="toDate" id="toDate" [(ngModel)]="filtertoDate" (input)="applyFilter()"/> 
+            <br>
+          </div>
+          <br>
+            <input type="reset" class="btn btn-primary" value="Clear Filter" name="clearFilter" id="clearFilter" (click)="reloadData()"/><br><br>
+        
+        </form>
+        </div>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Sl. No</th>
+            <th> Req. Category Code </th>
+            <th> Trans. Category</th>
+            <th> Req. Category</th>
+            <th> Date</th>
+            <th> Shift</th>
+            <th> Incharge</th>
+            <th> Operator </th>
+            <th> Part Item</th>
+            <th> Part Stage</th>
+            <th>Req. Grp Category</th>
+            <th>Req. Grp. Ctgy No</th>
+            <th> Issue Category</th>
+            <th> Issue To</th>
+            <th>Return Part Item</th>
+            <th> Unit in GMs</th>
+            <th> Stock Nos</th>
+            <th> Stock Wt</th>
+            <th> Opening Nos</th>
+            <th> Opening Wt</th>
+            <th> Okay Nos</th>
+            <th> Okay Wt</th>
+            <th> Adjust Nos</th>
+            <th> Adjust Wt</th>
+            <th> Mismatch Nos</th>
+            <th> Mismatch Wt</th>
+            <th> Taken Nos</th>
+            <th> Taken Wt</th>
+            <th> Direct Tkn Nos</th>
+            <th> Direct Tkn Wt</th>
+            <th> Pending Tkn Nos</th>
+            <th> Pending Tkn Wt</th>
+            <th> Bin Location</th>
+            <th> Remarks</th>
+            <th> Verified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let noteSlip of noteSlips |  slice: (page-1) * pageSize : page * pageSize; let i = index">
+            <td>{{ (page -1) * pageSize + i + 1 }}</td>
+            <td>{{noteSlip.requisitionCategoryOurCode}}</td>
+            <td>{{noteSlip.transactionCategory}}</td>
+            <td>{{noteSlip.requisitionCategory}}</td>
+            <td>{{noteSlip.noteSlipDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{noteSlip.noteSlipShift}}</td>
+            <td>{{noteSlip.inchargeEmployeeId}}</td>
+            <td>{{noteSlip.operatorEmployeeId}}</td>
+            <td>{{noteSlip.partItemId}}</td>
+            <td>{{noteSlip.partStage}}</td>
+            <td>{{noteSlip.requisitionGroupCategory}}</td>
+            <td>{{noteSlip.requisitionGroupNo}}</td>
+            <td>{{noteSlip.issueCategory}}</td>
+            <td>{{noteSlip.issueToVendorId}}</td>
+            <td>{{noteSlip.returnPartItemId}}</td>
+            <td>{{noteSlip.unitWtGms}}</td>
+            <td>{{noteSlip.stockNos}}</td>
+            <td>{{noteSlip.stockWt}}</td>
+            <td>{{noteSlip.openingNos}}</td>
+            <td>{{noteSlip.openingWt}}</td>
+            <td>{{noteSlip.okayNos}}</td>
+            <td>{{noteSlip.okayWt}}</td>
+            <td>{{noteSlip.adjustNos}}</td>
+            <td>{{noteSlip.adjustWt}}</td>
+            <td>{{noteSlip.mismatchNos}}</td>
+            <td>{{noteSlip.mismatchWt}}</td>
+            <td>{{noteSlip.takenNos}}</td>
+            <td>{{noteSlip.takenWt}}</td>
+            <td>{{noteSlip.directTakenNos}}</td>
+            <td>{{noteSlip.directTakenWt}}</td>
+            <td>{{noteSlip.pendingTakenNos}}</td>
+            <td>{{noteSlip.pendingTakenWt}}</td>
+            <td>{{noteSlip.binLocation}}</td>
+            <td>{{noteSlip.remarks}}</td>
+            <td>{{noteSlip.verified}}</td>
+            <td>
+              <div *ngIf="isVerify">
+                <button (click)="update(noteSlip, 'verify')" class="btn btn-success">Verify</button>
+              </div>
+              <div *ngIf="isUnverify">
+                <button (click)="update(noteSlip, 'unverify')" class="btn btn-danger">Un Verify</button>
+              </div>
+            </td>
+            <td>
+              <div *ngIf="isDelete" ><button (click)="delete(noteSlip.noteSlipId)" class="btn btn-danger">Delete</button>
+              </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
+  </div>

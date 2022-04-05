@@ -1,0 +1,82 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>SL.No</th>
+            <th>Created Client</th>
+            <th>Vendor Our Code</th>
+            <th>Vendor Name</th>
+            <th>Vendor Name Ac</th>
+            <th>Vendor Name Id</th>
+            <th>Vendor Given Code</th>
+            <th>Vendor Type</th>
+            <th>Vendor SubType</th>
+            <th>Vendor Our TypeCode</th>
+            <th>Sales</th>
+            <th>Purchase</th>
+            <th>JobWork</th>
+            <th>Transporter</th>
+            <th>ManPower</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th>Address 3</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Pincode</th>
+            <th>GST-IN</th>
+            <th>Registered Date</th>
+            <th>Active</th>
+            <th>InActivated Date</th>
+            <th>Created UserId</th>
+            <th>Created Date</th>
+            <th>Updated UserId</th>
+            <th>Updated Date</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vendor of vendors | async">
+            <td>{{vendor.vendorId}}</td>
+            <td>{{vendor.createdClient}}</td>
+            <td>{{vendor.vendorOurCode}}</td>
+            <td>{{vendor.vendorName}}</td>
+            <td>{{vendor.vendorNameAc}}</td>
+            <td>{{vendor.vendorNameId}}</td>
+            <td>{{vendor.vendorGivenCode}}</td>
+            <td>{{vendor.vendorType}}</td>
+            <td>{{vendor.vendorSubType}}</td>
+            <td>{{vendor.vendorOurTypeCode}}</td>
+            <td>{{vendor.sales}}</td>
+            <td>{{vendor.purchase}}</td>
+            <td>{{vendor.jobWork}}</td>
+            <td>{{vendor.transporter}}</td>
+            <td>{{vendor.manPower}}</td>
+            <td>{{vendor.address1}}</td>
+            <td>{{vendor.address2}}</td>
+            <td>{{vendor.address3}}</td>
+            <td>{{vendor.country}}</td>
+            <td>{{vendor.state}}</td>
+            <td>{{vendor.city}}</td>
+            <td>{{vendor.pincode}}</td>
+            <td>{{vendor.gstin}}</td>
+            <td>{{vendor.registeredate}}</td>
+            <td>{{vendor.active}}</td>
+            <td>{{vendor.inActivatedDate}}</td>
+            <td>{{vendor.createdUserId}}</td>
+            <td>{{vendor.createdDate}}</td>
+            <td>{{vendor.updatedUserId}}</td>
+            <td>{{vendor.updatedDate}}</td>
+            <td>{{vendor.comments}}</td>
+
+            <td>
+              <div *ngIf="isDelete"><button (click)="delete(vendor.vendorId)" class="btn btn-danger">Delete</button>
+              </div>  </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

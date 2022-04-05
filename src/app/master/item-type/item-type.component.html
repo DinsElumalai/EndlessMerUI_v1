@@ -1,0 +1,14 @@
+<br><br>
+<div  class="container" align="center"><h1 align="center">Item - Type Details</h1>
+    
+    <div align="right" *ngIf="isCreate">
+        <button mdbRipple type="button" class="btn btn-primary" (click)= "isAdd = !isAdd">Create</button>
+    </div><br><hr>
+    <div *ngIf= "isAdd">
+        <app-itemtype-add></app-itemtype-add> 
+    </div>
+    <div>
+        <app-itemtype-list></app-itemtype-list> 
+    </div>
+    
+</div>

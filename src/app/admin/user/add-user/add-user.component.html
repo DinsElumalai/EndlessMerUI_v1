@@ -1,0 +1,50 @@
+
+<div class="d-flex justify-content-center">
+      <div style="width : 50%" class ="box border">
+      <form class="border border-light p-5" (ngSubmit)="onSubmit()">
+      
+          <p class="h4 mb-4 text-center">Create User</p>
+      
+                  <div class="form-group ">
+                     <label for="userId">User Id : </label>
+                <!--     <select class="form-control form-select" id="userId" name="userId" [(ngModel)]="user.userId" >
+                         <option *ngFor="let employee of employees" [value]="employee.employeeId">
+                             {{employee.employeeOurCode}} - {{employee.employeeName}}
+                           </option>
+                     </select>-->
+                     <input list="employees" name="userId" id="userId" [(ngModel)]="user.userId">
+                    <datalist id="employees">
+                      <option *ngFor="let employee of employees" [value]="employee.employeeId">
+                        {{employee.employeeOurCode}} - {{employee.employeeName}}
+                      </option>
+                    </datalist>
+                   </div>
+          Client        <input type="text" id="client" name="client" class="form-control mb-3" placeholder="client" [(ngModel)]="user.createdClient" [readonly]="isCreateClientReadOnly">
+                  <div class="form-group ">
+                    <label for="groupName">User Group : </label>
+                    <select class="form-control form-select" id="groupName" name="groupName" [(ngModel)]="user.groupName" >
+                        <option *ngFor="let group of groups" [value]="group">
+                            {{group}}
+                          </option>
+                    </select>
+                  </div>
+                  <div class="form-group ">
+                    <label for="active">Active Status : </label>
+                    <select class="form-control form-select" id="isActive" name="isActive" [(ngModel)]="user.isActive" >
+                        <option value=true> Yes</option>
+                        <option value=false> No</option>
+                    </select>
+                  </div>
+                  
+
+       Password           <input type="password" id="Password" name="Password" class="form-control mb-3" placeholder="Password" [(ngModel)]="user.password">
+                          
+         <div class="d-flex justify-content-center">
+                <button class="btn btn-info btn-block" type="submit">Add User</button>
+         </div>
+      </form>
+      <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+             User has been added successfully...
+      </div>
+      </div>
+</div>

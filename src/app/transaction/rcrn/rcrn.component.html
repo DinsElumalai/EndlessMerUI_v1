@@ -1,0 +1,14 @@
+<br><br>
+<div  class="container" align="center"><h1 align="center">RCRN Details</h1>
+    
+    <div align="right" *ngIf="isCreate">
+        <button mdbRipple type="button" class="btn btn-primary" (click)= "isAdd = !isAdd">Create</button>
+    </div><br><hr>
+    <div *ngIf= "isAdd">
+        <app-add-rcrn></app-add-rcrn> 
+    </div>
+    <div>
+        <app-list-rcrn></app-list-rcrn> 
+    </div>
+    
+</div>

@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Software Setup ID</th>
+            <th>Constant Name</th>
+            <th>Constant Value</th>
+            <th>Comments</th>
+            <th>Updated By</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let software of softwareSetups | async">
+            <td>{{software.id}}</td>
+            <td>{{software.constantName}}</td>
+            <td>{{software.constantValue}}</td>
+            <td>{{software.comments}}</td>
+            <td>{{software.updatedUserId}}</td>
+            <td>{{software.updatedDate}}</td>
+            <td><button (click)="delete(software.id)" *ngIf="isDeleteAllowed" class="btn btn-danger">Delete</button>
+                </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

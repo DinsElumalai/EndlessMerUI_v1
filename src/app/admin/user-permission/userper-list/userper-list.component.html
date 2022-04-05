@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Sl. no</th>
+            <th>Group Name</th>
+            <th>Role Name</th>
+            <th>Created Client</th>
+            <th>Created By</th>
+            <th>Created Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userGroup of userGroups | async; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{userGroup.roleGroupName}}</td>
+            <td>{{userGroup.roleName}}</td>
+            <td>{{userGroup.createdClient}}</td>
+            <td>{{userGroup.createdUserId}}</td>
+            <td>{{userGroup.createdDate}}</td>
+            <td>
+              <div *ngIf="isDelete"><button (click)="delete(userGroup.roleGroupId)" class="btn btn-danger">Delete</button>
+              </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,98 @@
+<div class="sidebar_menu" [@onSideNavChange]="sidebarState">
+    <mat-nav-list class="menu-list">
+      
+      
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLinkActive="active-list-item" routerLink="dashboard" title="Dashboard">
+          <mat-icon class="icon" [@iconAnimation]="sidebarState">dashboard</mat-icon>
+        &nbsp;  <span class="label" [@labelAnimation]="sidebarState">Dashboard</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLinkActive="active-list-item" *ngIf="isMasterAllowed" type="button" (click)="masterState = !masterState">
+        <mat-icon class="icon" [@iconAnimation]="sidebarState">nature_people</mat-icon>
+        &nbsp;  <span class="label" [@labelAnimation]="sidebarState">Master</span>
+        &nbsp;&nbsp;&nbsp;<mat-icon>expand_more</mat-icon>
+      </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="masterState" routerLink="emp" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">group</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Employee</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="masterState" routerLink="designation" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">hail</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Designation</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="masterState" routerLink="vendor" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">add_shopping_cart</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Vendor</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="masterState" routerLink="item" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grain</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Item</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="masterState" routerLink="itemtype" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grid_3x3</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Item Type</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="masterState" routerLink="itemsubtype" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grid_goldenratio</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Item Sub Type</span>
+              </a>
+        <mat-divider></mat-divider>       
+        <a mat-list-item routerLinkActive="active-list-item" *ngIf="isTransactionAllowed" type="button" (click)="transactionState = !transactionState">
+            <mat-icon class="icon" [@iconAnimation]="sidebarState">nature_people</mat-icon>
+             &nbsp;  <span class="label" [@labelAnimation]="sidebarState">Transaction</span>
+             &nbsp;&nbsp;&nbsp;<mat-icon>expand_more</mat-icon>
+        </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="transactionState" routerLink="rcrn" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">group</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">RCRN</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="transactionState" routerLink="ppon" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">hail</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">PPON</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="transactionState" routerLink="rpan" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">add_shopping_cart</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">RPAN</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="transactionState" routerLink="pdrn" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grain</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">PDRN</span>
+              </a>
+      <mat-divider></mat-divider>       
+      <a mat-list-item routerLinkActive="active-list-item" *ngIf="isAdminAllowed" type="button" (click)="adminState = !adminState">
+        <mat-icon class="icon" [@iconAnimation]="sidebarState">nature_people</mat-icon>
+        &nbsp;  <span class="label" [@labelAnimation]="sidebarState">Admin</span>
+        &nbsp;&nbsp;&nbsp;<mat-icon>expand_more</mat-icon>
+      </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="adminState" routerLink="prefix" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">group</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Prefix Setup</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="adminState" routerLink="software" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">hail</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">Software Setup</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="adminState" routerLink="user" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">add_shopping_cart</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">User</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="adminState" routerLink="userper" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grain</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">User Permission</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="adminState" routerLink="userlog" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grid_3x3</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">User Log</span>
+              </a>
+              <a mat-list-item routerLinkActive="active-list-item" *ngIf="adminState" routerLink="useracpage" title="Work">
+                &nbsp;&nbsp;&nbsp;&nbsp; <mat-icon class="icon" [@iconAnimation]="sidebarState">grid_goldenratio</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="label" [@labelAnimation]="sidebarState">User Accessed Page</span>
+              </a>
+      <mat-divider></mat-divider>   
+      
+      
+      
+    
+    </mat-nav-list>
+  </div>

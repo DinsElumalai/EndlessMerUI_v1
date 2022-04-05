@@ -1,0 +1,80 @@
+
+    <div class="d-flex justify-content-center">
+        <div style="width : 50%" class ="box border">
+        <form class="border border-light p-5" (ngSubmit)="onSubmit()">
+        
+            <p class="h4 mb-4 text-center">Create Vendor</p>
+           
+    Vendor Our Code :             <input type="text" id="vendorOurCode" name="vendorOurCode" class="form-control mb-3" placeholder="Vendor Our Code" [(ngModel)]="vendor.vendorOurCode" readonly>
+                   
+                 Created Client :  <input type="text" id="createdClient" name="createdClient" class="form-control mb-3" placeholder="createdClient" [(ngModel)]="vendor.createdClient" readonly>
+        * Vendor Name :            <input type="text" id="vendorName" name="vendorName" class="form-control mb-3" placeholder="Vendor Name" [(ngModel)]="vendor.vendorName">
+         Vendor Name Account :           <input type="text" id="vendorNameAc" name="vendorNameAc" class="form-control mb-3" placeholder="Vendor Name for Ac" [(ngModel)]="vendor.vendorNameAc">
+         Vendor Name Id :           <input type="text" id="vendorNameId" name="vendorNameId" class="form-control mb-3" placeholder="Vendor Name Id" [(ngModel)]="vendor.vendorNameId">
+       Vendor Given Code:             <input type="text" id="vendorGivenCode" name="vendorGivenCode" class="form-control mb-3" placeholder="Vendor Given Code" [(ngModel)]="vendor.vendorGivenCode">
+                    <div class="form-group ">
+                        <label for="sel1">Vendor Type:</label>
+                        <select class="form-control form-select" id="vendorType" name="vendorType" [(ngModel)]="vendor.vendorType" >
+                          <option value="Customer">Customer</option>
+                          <option value="Supplier">Supplier</option>
+                          <option value="Sub-Contractor">Sub-Contractor</option>
+                          <option value="Own-Plant">Own Plant</option>
+                        </select>
+                      </div> 
+      Vendor Sub Type :              <input type="text" id="vendorSubType" name="vendorSubType" class="form-control mb-3" placeholder="Vendor SubType" [(ngModel)]="vendor.vendorSubType">
+      Vendor Our Type Code :              <input type="text" id="vendorOurTypeCode" name="vendorOurTypeCode" class="form-control mb-3" placeholder="Vendor Our TypeCode" [(ngModel)]="vendor.vendorOurTypeCode">
+                    <div class="preference">
+                        <label for="peas">Is Sales ? : Yes / No  &nbsp;</label>
+                        <input type="checkbox" name="sales" id="sales" [(ngModel)]="vendor.sales">
+                    </div>
+                    <div class="preference">
+                        <label for="peas">Is purchase ? : Yes / No  &nbsp;</label>
+                        <input type="checkbox" name="purchase" id="purchase" [(ngModel)]="vendor.purchase">
+                    </div>
+                    <div class="preference">
+                        <label for="peas">Is Jobwork ? : Yes / No &nbsp;</label>
+                        <input type="checkbox" name="jobWork" id="jobWork" [(ngModel)]="vendor.jobWork">
+                    </div>
+                    <div class="preference">
+                        <label for="peas">Is Transporter ? : Yes / No &nbsp;</label>
+                        <input type="checkbox" name="transporter" id="transporter" [(ngModel)]="vendor.transporter">
+                    </div>
+                    <div class="preference">
+                        <label for="peas">Is Manpower ? : Yes / No &nbsp;</label>
+                        <input type="checkbox" name="manPower" id="manPower" [(ngModel)]="vendor.manPower">
+                        
+                    </div>
+                    
+      Address 1 :             <input type="textarea" id="address1" name="address1" class="form-control mb-3" placeholder="Address1" [(ngModel)]="vendor.address1">
+      Address 2 :              <input type="textarea" id="address2" name="address2" class="form-control mb-3" placeholder="Address2" [(ngModel)]="vendor.address2">
+       Address 3 :             <input type="textarea" id="address3" name="address3" class="form-control mb-3" placeholder="Address3" [(ngModel)]="vendor.address3">
+        Country :            <input type="text" id="country" name="country" class="form-control mb-3" placeholder="Country" [(ngModel)]="vendor.country">
+         State :           <input type="text" id="state" name="state" class="form-control mb-3" placeholder="State" [(ngModel)]="vendor.state">
+        City :            <input type="text" id="city" name="city" class="form-control mb-3" placeholder="City" [(ngModel)]="vendor.city">
+       Pincode :             <input type="number" id="pincode" name="pincode" class="form-control mb-3" placeholder="Pincode" [(ngModel)]="vendor.pincode">
+       * GTIN :            <input type="text" id="gstin" name="gstin" class="form-control mb-3" placeholder="GST-IN" [(ngModel)]="vendor.gstin">
+                    
+                     <label>Date of Registration </label>
+                         <input placeholder="DOR" type="date" id="registeredDate" name="registeredDate"class="form-control mb-3" placeholder="Registered Date" [(ngModel)]="vendor.registeredate">
+                    <!-- image -->
+                    
+                    <div class="preference">
+                        <label for="peas">Status : Active / Inactive</label>
+                        <input type="checkbox" name="active" id="active" [(ngModel)]="vendor.active">
+                        
+                    </div>
+                    <div *ngIf="!vendor.active">
+                    <label>Date of Inactivation </label>
+                         <input placeholder="DOI" type="date" id="inactivatedDate" name="inactivatedDate"class="form-control mb-3" placeholder="Inactivated Date" [(ngModel)]="vendor.inActivatedDate">
+                    </div>
+         Comments :            <input type="textarea" id="comments" name="comments" class="form-control mb-3" placeholder="Comments" [(ngModel)]="vendor.comments">
+                    
+           <div class="d-flex justify-content-center">
+                  <button class="btn btn-info btn-block" type="submit">Add Vendor</button>
+           </div>
+        </form>
+        <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+               New Vendor has been added successfully...
+        </div>
+        </div>
+        </div>

@@ -1,0 +1,168 @@
+
+<div class="d-flex justify-content-center">
+    <div style="width : 50%" class ="box border">
+      <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+        New PPON has been added successfully...
+ </div>
+    <form class="border border-light p-5" (ngSubmit)="onSubmit()">
+    
+        <p class="h4 mb-4 text-center">Create PPON</p>
+        Requisition Category Our COde
+        <input type="text" id="requisitionCategoryOurCOde" name="requisitionCategoryOurCOde" class="form-control mb-3" placeholder="Sl no" [(ngModel)]="noteSlip.requisitionCategoryOurCode" readonly>
+        <div class="form-group ">
+            <label for="sel1">Transaction Category </label>
+            <div *ngIf="isTransactionCategory">
+              <select class="form-control form-select" id="transCategory" name="transCategory" [(ngModel)]="noteSlip.transactionCategory" >
+                <option value="Actual" >Actual</option>
+                <option value="Adjust">Adjust</option>
+              </select>
+        </div>
+        <div *ngIf="!isTransactionCategory">
+          <input type="text" [(ngModel)] ="noteSlip.transactionCategory" class="form-control mb-3" value="Actual" id="transCategory" name="transCategory" readonly/>
+        </div>
+          </div>
+          Requisition Category
+        <input type="text" id="requisitionCategory" name="requisitionCategory"  class="form-control mb-3" placeholder="requisitionCategory" [(ngModel)]="noteSlip.requisitionCategory" readonly>    
+        Note Slip Date
+        <input type="date" id="noteSlipDate" name="noteSlipDate" class="form-control mb-3" placeholder="noteSlipDate" [(ngModel)]="noteSlip.noteSlipDate">
+        <div class="form-group ">
+            <label for="sel1">Shift </label>
+            <select class="form-control form-select" id="noteSlipShift" name="noteSlipShift" [(ngModel)]="noteSlip.noteSlipShift" >
+              <option value="Shift 1" >Shift 1</option>
+              <option value="Shift 2">Shift 2</option>
+              <option value="Shift 3">Shift 3</option>
+            </select>
+          </div>
+          <div class="form-group ">
+            <label for="userId">Incharge : </label>
+            <select class="form-control form-select" id="inchargeEmployeeId" name="inchargeEmployeeId" [(ngModel)]="noteSlip.inchargeEmployeeId" >
+                <option *ngFor="let employee of employees" [value]="employee.employeeId">
+                    {{employee.employeeOurCode}} - {{employee.employeeName}}
+                  </option>
+            </select>
+          </div>
+          <div class="form-group ">
+            <label for="userId">Operator : </label>
+            <select class="form-control form-select" id="operatorEmployeeId" name="operatorEmployeeId" [(ngModel)]="noteSlip.operatorEmployeeId" >
+                <option *ngFor="let employee of employees" [value]="employee.employeeId">
+                    {{employee.employeeOurCode}} - {{employee.employeeName}}
+                  </option>
+            </select>
+          </div>
+          <div class="form-group ">
+            <label for="userId">Machine Item :
+              <div style="background-color: greenyellow;">{{machineItemText}}</div> </label>
+      <!--      <select class="form-control form-select" id="machineItemId" name="machineItemId" [(ngModel)]="noteSlip.machineItemId" >
+                <option *ngFor="let machineItem of machineItems" [value]="machineItem.itemId">
+                    {{machineItem.itemOurCode}} - {{machineItem.itemName}}
+                  </option>
+            </select>-->
+            <input list="machineItems" class="form-control" name="machineItemId" id="machineItemId" (change)="displayMachineItem()" [(ngModel)]="noteSlip.machineItemId">
+              <datalist id="machineItems">
+                <option *ngFor="let machineItem of machineItems" [value]="machineItem.itemId">
+                  {{machineItem.itemNameId}} - {{machineItem.itemNumber}}
+                </option>
+              </datalist>
+          </div>
+          <div class="form-group ">
+            <label for="sel1">Production Category </label>
+            <select class="form-control form-select" id="productionCategory" name="productionCategory" [(ngModel)]="noteSlip.productionCategory" (change)="getLastPponTransaction()" >
+              <option value="Regular" >Regular</option>
+              <option value="RP-SFP">RP - SFP</option>
+              <option value="CV(FP)">CV(FP)</option>
+              <option value="V-SFP">V - SFP</option>
+            </select>
+          </div>
+          <div class="form-group ">
+            <label for="userId">Part Item : 
+              <div style="background-color: greenyellow;">{{partItemText}}</div>
+            </label>
+        <!--    <select class="form-control form-select" id="partItemId" name="partItemId" (change)="getRcrnLastTransaction()" [(ngModel)]="noteSlip.partItemId" >
+                <option *ngFor="let partItem of partItems" [value]="partItem.itemId">
+                    {{partItem.itemOurCode}} - {{partItem.itemName}}
+                  </option>
+            </select> -->
+            <input list="partItems" name="partItemId" class="form-control" id="partItemId" (change)="getLastPponTransaction();displayPartItem();" [(ngModel)]="noteSlip.partItemId">
+              <datalist id="partItems">
+                <option *ngFor="let partItem of partItems" [value]="partItem.itemId">
+                  {{partItem.itemNameId}} - {{partItem.itemNumber}} - {{partItem.itemName}}
+                </option>
+              </datalist>
+          </div>
+          <div class="form-group ">
+            <label for="sel1">Part Stage </label>
+            <select class="form-control form-select" id="partStage" name="partStage" [(ngModel)]="noteSlip.partStage" (change)="getLastPponTransaction()">
+              <option value="FP" >FP</option>
+              <option value="SFP">SFP</option>
+            </select>
+          </div>
+          Part Stage No
+        <input type="text" id="partStageNumber" name="partStageNumber" class="form-control mb-3" placeholder="Part Stage Number" [(ngModel)]="noteSlip.partStageNumber">
+        Unit in Gms
+        <input type="text" id="unitWtGms" name="unitWtGms" class="form-control mb-3" placeholder="Unit Weight in Gms" [(ngModel)]="noteSlip.unitWtGms">
+        
+        <div id="actual" *ngIf="noteSlip.transactionCategory == 'Actual'">
+          <div *ngIf="noteSlip.directTakenNos > 0">
+            <div class="alert alert-warning" role="alert" >
+              First clear Direct Taken Nos
+             </div>
+          </div>
+        Okay Nos
+          <input type="number" id="okayNos" name="okayNos" class="form-control mb-3" value=0 placeholder="Okay Nos" [(ngModel)]="noteSlip.okayNos">
+          <div *ngIf="noteSlip.directTakenWt > 0">
+            <div class="alert alert-warning" role="alert" >
+              First clear Direct Taken Wt
+             </div>
+          </div>
+          Okay Wt
+          <input type="number" id="okayWt" name="okayWt" class="form-control mb-3" value=0 placeholder="Okay WT" [(ngModel)]="noteSlip.okayWt">
+         </div>
+         <div id="adjust" *ngIf="noteSlip.transactionCategory == 'Adjust'">
+          Adjust Nos
+          <input type="number" id="adjustNos" name="adjustNos" class="form-control mb-3" placeholder="Adjust Nos" [(ngModel)]="noteSlip.adjustNos">
+         Adjust Wt
+          <input type="number" id="adjustWt" name="adjustWt" class="form-control mb-3" placeholder="Adjust WT" [(ngModel)]="noteSlip.adjustWt" (change)="getLastPponTransaction()">
+         </div>
+         Stock Nos
+          <input type="number" id="stockNos" name="stockNos" class="form-control mb-3" placeholder="Stock Nos" [(ngModel)]="noteSlip.stockNos" readonly>
+         Stock Wt
+          <input type="number" id="stockWt" name="stockWt" class="form-control mb-3" placeholder="Stock WT" [(ngModel)]="noteSlip.stockWt" readonly>
+          Opening Nos
+          <input type="number" id="openingNos" name="openingNos" class="form-control mb-3" placeholder="Opening Nos" [(ngModel)]="noteSlip.openingNos" readonly>
+         Opening Wt
+          <input type="number" id="openingWt" name="openingWt" class="form-control mb-3" placeholder="Opening Wt" [(ngModel)]="noteSlip.openingWt" readonly>
+        Mismatch Nos
+          <input type="number" id="mismatchNos" name="mismatchNos" class="form-control mb-3" placeholder="Mismatch Nos" [(ngModel)]="noteSlip.mismatchNos" readonly>
+          Mismatch Wt
+          <input type="number" id="mismatchWt" name="mismatchWt" class="form-control mb-3" placeholder="Mismatch Wt" [(ngModel)]="noteSlip.mismatchWt" readonly>
+         Taken Nos
+          <input type="number" id="takenNos" name="takenNos" [value]=0 class="form-control mb-3" placeholder="Taken Nos" [(ngModel)]="noteSlip.takenNos" readonly>
+         Taken Wt
+          <input type="number" id="takenWt" name="takenWt" [value]=0 class="form-control mb-3" placeholder="Taken WT" [(ngModel)]="noteSlip.takenWt" readonly>
+          Direct Taken Nos
+          <input type="number" id="directTakenNos" name="directTakenNos" class="form-control mb-3" placeholder="Direct Taken Nos" [(ngModel)]="noteSlip.directTakenNos" readonly>
+          Direct Taken Wt
+          <input type="number" id="directTakenWt" name="directTakenWt" class="form-control mb-3" placeholder="Direct Taken WT" [(ngModel)]="noteSlip.directTakenWt" readonly>
+          Pending Taken Nos
+          <input type="number" id="pendingTakenNos" name="pendingTakenNos" class="form-control mb-3" placeholder="Pending Taken Nos" [(ngModel)]="noteSlip.pendingTakenNos" readonly>
+        Pending Taken Wt
+          <input type="number" id="pendingTakenWt" name="pendingTakenWt" class="form-control mb-3" placeholder="Pending Taken WT" [(ngModel)]="noteSlip.pendingTakenWt" readonly>
+         Rejected Nos
+          <input type="number" id="rejectedNos" name="rejectedNos" value=0 class="form-control mb-3" placeholder="Rejected Nos" [(ngModel)]="noteSlip.rejectedNos">
+     Rejected Wt     <input type="number" id="rejectedWt" name="rejectedWt" value=0 class="form-control mb-3" placeholder="Rejected Wt" [(ngModel)]="noteSlip.rejectedWt">
+     Rejected Reason     <input type="text" id="rejectedReason" name="rejectedReason" class="form-control mb-3" placeholder="Rejected Reason" [(ngModel)]="noteSlip.rejectedReason">
+     Remarks     <input type="text" id="remarks" name="remarks" class="form-control mb-3" placeholder="Remarks" [(ngModel)]="noteSlip.remarks">
+     <!--     <div class="form-group ">
+            <label for="sel1">Verified </label>
+            <select class="form-control form-select" id="isVerified" name="isVerified" [(ngModel)]="noteSlip.verified" >
+              <option value="false" >No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>-->
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-info btn-block" type="submit" *ngIf="isSubmitEnabled">Add PPON</button>
+     </div>
+  </form>
+  
+  </div>
+  </div>

@@ -1,0 +1,62 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Employee Our Code</th>
+            <th>Employee Name</th>
+            <th>Father Name</th>
+            <th>DateOfBirth</th>
+            <th>Created Client</th>
+            <th>Type</th>
+            <th>Sub-Type</th>
+            <th>Our-TypeCode</th>
+            <th>Emp-Group</th>
+            <th>Vendor Id</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>title</th>
+            <th>DateOfJoining</th>
+            <th>Is-Resigned</th>
+            <th>DateOfResignation</th>
+            <th>comments</th>
+            <th>Created By</th>
+            <th>Created Date</th>
+            <th>Updated By</th>
+            <th>Updated Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees | async">
+            <td>{{employee.employeeOurCode}}</td>
+            <td>{{employee.employeeName}}</td>
+            <td>{{employee.fatherName}}</td>
+            <td>{{employee.dateOfBirth}}</td>
+            <td>{{employee.createdClient}}</td>
+            <td>{{employee.employeeType}}</td>
+            <td>{{employee.employeeSubType}}</td>
+            <td>{{employee.employeeOurTypeCode}}</td>
+            <td>{{employee.empGroup}}</td>
+            <td>{{employee.vendorId}}</td>
+            <td>{{employee.designation}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.title}}</td>
+            <td>{{employee.dateOfJoining}}</td>
+            <td>{{employee.resigned}}</td>
+            <td>{{employee.dateOfResignation}}</td>
+            <td>{{employee.comments}}</td>
+            <td>{{employee.createdUserId}}</td>
+            <td>{{employee.createdDate}}</td>
+            <td>{{employee.updatedUserId}}</td>
+            <td>{{employee.updatedDate}}</td>
+
+            <td>
+              <div *ngIf="isDelete" ><button (click)="delete(employee.employeeId)" class="btn btn-danger">Delete</button>
+              </div>  </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

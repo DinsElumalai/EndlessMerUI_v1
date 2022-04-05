@@ -1,0 +1,48 @@
+<br><br>
+
+<!------------------------------------------------------------------------>
+<div  class="container" align="center">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 align="center">User Logs</h2>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal border"><br>
+        <div class="control-group form-inline d-flex justify-content-center">
+          
+          User ID :&nbsp;&nbsp;<input type="text" class="form-control col-xs-15" name="userId" id="userId" [(ngModel)]="filterUserId" (input)="applyFilter()"/>
+          &nbsp;&nbsp;&nbsp;&nbsp;From Date :  &nbsp;&nbsp; <input type="date" class="form-control col-xs-15" name="fromDate" id="fromDate"  [(ngModel)]="filterFromDate" (input)="applyFilter()"/> 
+          &nbsp;&nbsp;&nbsp;&nbsp;To Date :&nbsp;&nbsp; <input type="date" class="form-control col-xs-15" name="toDate" id="toDate" [(ngModel)]="filtertoDate" (input)="applyFilter()"/> 
+        </div><br>
+    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Sl. No</th>
+            <th>User ID</th>
+            <th>User IP</th>
+            <th>Log Type</th>
+            <th>Log Date</th>
+            <th>Created Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userLog of userLogs | slice: (page-1) * pageSize : page * pageSize; let i = index">
+            <td>{{ (page -1) * pageSize + i + 1 }}</td>
+            <td>{{userLog.userId}}</td>
+            <td>{{userLog.userIp}}</td>
+            <td>{{userLog.logType}}</td>
+            <td>{{userLog.logDate}}</td>
+            <td>{{userLog.createdClient}}</td>
+            <td><div *ngIf="isDelete"><button (click)="delete(userLog.logId)" class="btn btn-danger">Delete</button>
+            </div> </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    
+    </div>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
+  </div>
